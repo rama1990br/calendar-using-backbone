@@ -17,22 +17,32 @@
     <table>
       <thead>
         <th>Hour of Day</th>
-          {{#daysOfWeek}}
-        <th>{{day}}</th>
-          {{/daysOfWeek}}
+        <!-- {{#each result1 as |result|}}
+        <th>{{result.day}}</th>
+        {{/each}} -->
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th> 
+        <th>Saturday</th> 
+        
+          <!-- {{#each daysOfWeek}}
+        <th>{{this}}</th>
+          {{/each}} -->
+         
       </thead>
       <tbody id="tableBody">
-       {{#result}}
+       {{#each result}}
             <tr id={{@index}} class="row">
-              <td id={{concatWords 'sun' hour}}>
+              <td id={{hour}}>
                 {{hour}}  
               </td>
-              {{#daysOfWeek}}
-              <td id={{concatWords day hour}}></td>
-              {{/daysOfWeek}}
-            <!-- <td></td><td></td><td></td><td></td><td></td><td></td> -->
+              {{#each days}}
+              <td id={{concatWords this ../hour}}></td>
+              {{/each}} 
           </tr>
-          {{/result}}
+          {{/each}}
       </tbody>
     </table>
   </section>
