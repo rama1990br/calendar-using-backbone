@@ -1,7 +1,20 @@
+const mysql = require('mysql'),
+  con = mysql.createConnection({
+    host: 'localhost',
+    user: 'custom',
+    password: 'password',
+    database: 'calendar_db'
+  });
+
 var methods = {};
 
-methods.retrieveAllAppointments = function(con, callbackfn) {
-  con.query('SELECT * FROM dummyTable', callbackfn);
+
+methods.retrieveAllAppointments = function() {
+   return new Promise(function(resolve, reject) {
+   	  con.query('SELECT * FROM dummyTable', function retrieveAppointments(err, content) {
+   	  	 return err ? reject(err) : resolve(content);
+   	  });
+   });
 };
 
-exports.data = methods;
+module.exports = methods;
